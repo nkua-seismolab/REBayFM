@@ -1,0 +1,6 @@
+-r rebayfm/requirements.txt
+pre-commit
+ruff
+ipython
+pytest
+build

@@ -1,0 +1,37 @@
+# Copy to a private configuration and set connection details for your SeisComP.
+# Paths are relative to the working directory. Unlisted options use defaults.
+seiscomp:
+  host: 127.0.0.1
+  database: mysql://sysop:sysop@127.0.0.1/seiscomp # Set locally or pass -d; never publish credentials.
+  wait_time: 120 # Allow upstream polarities and RESS measurements to finish.
+  reprocess: false
+velocity_model:
+  path: velocity_models/model_rigo1996_half.nd
+bayfm:
+  min_polarities: 8 # Minimum P first-motion polarities; events below are skipped.
+  strike_step: 10.0 # Grid search step (degrees).
+  dip_step: 5.0 # Grid search step (degrees).
+  rake_step: 10.0 # Grid search step (degrees).
+  use_strike360: true # Search strikes in [0, 360) instead of [0, 180].
+  mis_pick_impulsive: 0.10 # Mis-pick probability for impulsive onsets.
+  mis_pick_emergent: 0.30 # Mis-pick probability for emergent or missing onsets.
+  use_spol: true # Use S-wave polarization measurements (RESS pick comments).
+  use_nulls: false # Also accept picks classified "Good Null" by RESS.
+  spol_sigma_deg: 15.0 # 1-sigma angular uncertainty of S-polarization measurements.
+  f_spol: 3 # S-polarization likelihood: 1 Gaussian, 2 Laplace, 3 Cauchy.
+  w_spol: 0.2 # Posterior weight of the S-polarization term.
+  w_fmp: 2.0 # Posterior weight of the FMP mismatch penalty.
+  fmp_amp: true # Weight FMP by P radiation amplitude (downweight near nodal planes).
+  k_allowed: null # Flat penalty above this many FMP mismatches (null disables it).
+  lambda_penalty: 5.0 # Size of the flat penalty.
+  select_marginal_map: false # Per-axis marginal MAP estimates instead of the joint MAP.
+  use_depth_range: false # Marginalize the posterior over a range of trial depths.
+  depth_range_km: 1.0 # +- range of trial depths (km).
+  depth_step_km: 0.2 # Trial depth spacing (km).
+  hpd_level: 0.68 # Cumulative posterior mass of the highest-posterior-density region.
+output:
+  directory: output
+  save_figures: true
+logging:
+  level: DEBUG
+  file: null

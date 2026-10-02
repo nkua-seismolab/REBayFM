@@ -1,0 +1,7 @@
+pyyaml
+# seiscomp python bindings are compiled against numpy 1.x
+numpy<2
+scipy<1.13
+pandas<=3.0
+matplotlib
+obspy<=1.5
