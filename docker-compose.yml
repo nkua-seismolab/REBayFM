@@ -6,8 +6,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./config.yaml:/app/config.yaml:ro
-      # velocity model: host path must match velocity_model.path in config.yaml
-      - ./velocity_models:/app/velocity_models:ro
       # artifacts (figures, CSVs, logs) per event/processing time; host path
       # must match output.directory in config.yaml
       - ./output:/app/output:rw
